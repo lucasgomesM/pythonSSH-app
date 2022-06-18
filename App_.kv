@@ -1,0 +1,102 @@
+<App_>:
+    id: scManager
+    Screen:
+        name: 'access_Screen'
+        ScrollView:
+            BoxLayout:         
+                orientation: 'vertical'            
+                spacing: 40
+                size_hint_y: None
+                height: self.minimum_height         
+                
+                Label: 
+                    id: ipAddrTxt
+                    text: 'endereço ip: '  
+                    size_hint_y: None
+                    height: 80
+                TextInput:
+                    id: ipAddr           
+                    size_hint_y: None    
+                    size_hint_x: .8
+                    pos_hint: {'x' : 0.1}
+                    height: 80
+                Label: 
+                    id: usrTxt
+                    text: 'usuario: '  
+                    size_hint_y: None
+                    height: 80
+                TextInput:
+                    id: usr          
+                    size_hint_y: None    
+                    size_hint_x: .8
+                    pos_hint: {'x' : 0.1}
+                    height: 80
+                Label: 
+                    id: pwdTxt
+                    text: 'senha: '  
+                    size_hint_y: None
+                    height: 80
+                TextInput:
+                    id: pwd         
+                    size_hint_y: None    
+                    size_hint_x: .8
+                    pos_hint: {'x' : 0.1}
+                    height: 80
+                Button:
+                    border: 0,0,0,0
+                    text: 'Enviar!'
+                    size_hint_y: None
+                    size_hint_x: None
+                    pos_hint: {'center_x': .5}
+                    width: 150       
+                    height: 80
+                    on_release: app.connect(ipAddr,usr, pwd,scManager)
+    Screen:
+        name: 'main_Screen'
+        canvas.before:
+            Color:
+                rgba: (0.2,0.15,0.45,1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        ScrollView:   
+            BoxLayout:         
+                orientation: 'vertical'            
+                spacing: 20
+                size_hint_y: None
+                height: self.minimum_height           
+                
+                Label: 
+                    id: cmdLog
+                    text: 'Comando: '  
+                    size_hint_y: None
+                    height: 200
+                TextInput:
+                    id: cmdTxt            
+                    size_hint_y: None    
+                    size_hint_x: .8
+                    pos_hint: {'x' : 0.1}
+                    height: 400
+                Button:
+                    border: 0,0,0,0
+                    text: 'Enviar!'
+                    size_hint_y: None
+                    size_hint_x: None
+                    pos_hint: {'center_x': .5}
+                    width: 90       
+                    height: 60
+                    on_release: app.commands(cmdTxt,cmdLog)
+    Screen:
+        name: 'error_Screen'
+        Label:
+            text: 'Algo deu errado...\n'              
+            height: 200
+        Button:
+            border: 0,0,0,0
+            text: 'Voltar'
+            size_hint_y: None
+            size_hint_x: None
+            pos_hint: {'center_x': .5}
+            width: 90       
+            height: 60
+            on_release: app.back(scManager)
